@@ -3,9 +3,9 @@ require_relative '../lib/dictionary'
 
 describe Dictionary do
   it "do stuff" do
-    dictionary_return = {
+    data = {
         "word" => {
-        "definition" => "a {collection} of {letters}",
+        "definition" => "a {collection} of letters",
         "url" => "//example.com/word"
     },
         "letter" => {
@@ -14,16 +14,15 @@ describe Dictionary do
     },
         "collection" => {
         "definition" => "a group of things or people",
-        "url" => "//example.us/collection"
+        "url" => "//example.com/collection"
     }
     }
 
-    definition = Dictionary.new(dictionary_return).look_up("word")
+    definition = Dictionary.new(data).look_up("word")
 
     expect(definition).to eq({
                                  definition: "a collection of letters",
                                  see_also: [
-                                     "//example.com/letter",
                                      "//example.com/collection"
                                  ]
                              })
